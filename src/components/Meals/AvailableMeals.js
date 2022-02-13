@@ -32,10 +32,10 @@ const AvailableMeals = () => {
           });
         }
         setMeals(loadedMeals);
-        setIsLoading(false);
       } catch (error) {
-        console.log(error);
+        setError(error.message);
       }
+      setIsLoading(false);
     };
     fetchMeals();
   }, []);
@@ -54,6 +54,14 @@ const AvailableMeals = () => {
     return (
       <section className={styles.MealsLoading}>
         <p>Loading...</p>
+      </section>
+    );
+  }
+
+  if (error) {
+    return (
+      <section className={styles.MealsError}>
+        <p>{error}</p>
       </section>
     );
   }
